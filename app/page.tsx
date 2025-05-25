@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button"
 import { FaDiscord } from "react-icons/fa6"
 import { GamepadIcon as GameController, Users, Trophy, Sword, CalendarIcon } from "lucide-react"
 import StatsCounter from "@/components/stats-counter"
+import {FaInstagram} from "react-icons/fa";
 
 export default function HomePage() {
   return (
@@ -35,6 +36,13 @@ export default function HomePage() {
           priority
           className="object-cover object-center"
         />
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white text-center tracking-wider">
+              104th BATTALION MILSIM
+            </h1>
+          </div>
+        </div>
       </div>
 
       {/* Welcome Section */}
@@ -198,7 +206,11 @@ export default function HomePage() {
                 </ul>
               </div>
               <div className="mt-auto pt-4">
-                <Button variant="outline" className="w-full bg-zinc-900 border-blue-600 text-blue-400 hover:bg-blue-950/50" asChild>
+                <Button
+                  variant="outline"
+                  className="w-full bg-zinc-900 border-blue-600 text-blue-400 hover:bg-blue-950/50"
+                  asChild
+                >
                   <Link href="https://discord.gg/104th-battalion-milsim" target="_blank" rel="noopener noreferrer">
                     Learn More
                   </Link>
@@ -232,6 +244,15 @@ export default function HomePage() {
               >
                 <FaDiscord className="h-6 w-6" />
                 <span className="sr-only">Discord</span>
+              </Link>
+              <Link
+                href="https://www.instagram.com/104thbattalionmilsim"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-zinc-400 hover:text-blue-400 transition-colors"
+              >
+                <FaInstagram className="h-6 w-6" />
+                <span className="sr-only"></span>
               </Link>
             </div>
           </div>
