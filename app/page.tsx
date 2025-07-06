@@ -70,7 +70,7 @@ export default function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <StatsCounter
               icon={<Users className="h-8 w-8 text-blue-400" />}
-              value={1800}
+              value={2300}
               label="Members"
               description="Across all platforms"
             />
