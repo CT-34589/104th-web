@@ -2,6 +2,7 @@ import type React from "react"
 import "@/app/globals.css"
 import { Inter } from "next/font/google"
 import { ThemeProvider } from "@/components/theme-provider"
+import SmoothScrollProvider from "@/components/smooth-scroll-provider"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -47,7 +48,6 @@ export const metadata = {
     description: "Star Wars Military Simulation Community with over 1800+ members across Xbox, PlayStation, and PC",
     images: ["/images/logo.png"],
   },
-    generator: 'v0.dev'
 }
 
 export default function RootLayout({
@@ -56,10 +56,10 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
-          {children}
+        <ThemeProvider attribute="class" defaultTheme="dark" disableTransitionOnChange>
+          <SmoothScrollProvider>{children}</SmoothScrollProvider>
         </ThemeProvider>
       </body>
     </html>

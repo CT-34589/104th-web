@@ -41,10 +41,6 @@ const config = {
           DEFAULT: "hsl(var(--muted))",
           foreground: "hsl(var(--muted-foreground))",
         },
-        accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
-        },
         popover: {
           DEFAULT: "hsl(var(--popover))",
           foreground: "hsl(var(--popover-foreground))",
@@ -78,6 +74,15 @@ const config = {
           "800": "#9a3412",
           "900": "#7c2d12",
           "950": "#431407",
+        },
+        canvas: "#0c0d10",
+        surface: "#16171b",
+        line: "#26282d",
+        ink: "#f2f2f3",
+        mute: "#96989f",
+        accent: {
+          DEFAULT: "#5b7fde",
+          bright: "#7b9aec",
         },
       },
       borderRadius: {

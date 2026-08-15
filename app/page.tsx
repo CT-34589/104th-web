@@ -1,266 +1,257 @@
-import Image from "next/image"
 import Link from "next/link"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { FaDiscord } from "react-icons/fa6"
-import { GamepadIcon as GameController, Users, Trophy, Sword, CalendarIcon } from "lucide-react"
+import { Users, Trophy, Sword, CalendarIcon } from "lucide-react"
 import StatsCounter from "@/components/stats-counter"
-import {FaInstagram} from "react-icons/fa";
+import Reveal from "@/components/reveal"
+import HeroParallax from "@/components/hero-parallax"
+import SiteHeader from "@/components/site-header"
+import SiteFooter from "@/components/site-footer"
+
+const DISCORD_URL = "https://discord.gg/104th-battalion-milsim"
+
+const WHY_JOIN = [
+  {
+    icon: Users,
+    title: "Active Community",
+    description: "Join over 1,800 active members across every platform with daily events and operations.",
+  },
+  {
+    icon: Sword,
+    title: "Authentic Milsim",
+    description: "Experience realistic Star Wars military simulation with proper ranks, tactics, and teamwork.",
+  },
+  {
+    icon: Trophy,
+    title: "All Skill Levels",
+    description: "Whether you're new to milsim or a veteran, we have training and roles for everyone.",
+  },
+  {
+    icon: CalendarIcon,
+    title: "Events",
+    description: "Frequent small-scale ops, plus large-scale operations running several times a year.",
+  },
+]
+
+const NEW_RECRUIT_STEPS = [
+  "Join our Discord server",
+  "Choose your platoon or wing",
+  "Complete basic training and receive your name and designation",
+  "Start participating in raids and events",
+]
+
+const WHAT_TO_EXPECT = [
+  "Daily raids",
+  "Large-scale operations",
+  "Rank progression system",
+  "Friendly, welcoming community",
+  "Qualifications to earn",
+]
+
+const DIVISIONS = [
+  {
+    image: "/images/branches/army.svg",
+    name: "The Army",
+    description: "Engage in intense ground battles against the Separatists.",
+  },
+  {
+    image: "/images/branches/starfighter-corps.webp",
+    name: "The Starfighter Corps",
+    description: "Dominate the skies and space in thrilling aerial combat.",
+  },
+  {
+    image: "/images/branches/special-forces.png",
+    name: "Special Forces",
+    description: "An elite unit where only the best of the best operate together.",
+  },
+]
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-zinc-900 text-zinc-100">
-      {/* Header Bar */}
-      <header className="fixed top-0 left-0 right-0 bg-zinc-900/90 backdrop-blur-sm z-50 border-b border-zinc-800">
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between h-16">
-            <div className="flex items-center gap-3">
-              <Image
-                src="/images/logo.png"
-                alt="104th Battalion Logo"
-                width={30}
-                height={20}
-                className="rounded-full"
-              />
-              <h1 className="text-xl md:text-2xl font-bold tracking-wider text-white">104TH BATTALION</h1>
-            </div>
-          </div>
-        </div>
-      </header>
+    <div className="min-h-screen bg-canvas text-ink">
+      <SiteHeader />
 
-      {/* Hero Section with Banner */}
-      <div className="relative h-[calc(100vh-4rem)] w-full pt-16">
-        <Image
-          src="/images/new-banner.png"
-          alt="104th Battalion Milsim - Republic Fleet"
-          fill
-          priority
-          className="object-cover object-center"
-        />
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="">
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white text-center tracking-wider">
-              104th BATTALION MILSIM
+      {/* Hero */}
+      <section className="relative flex h-[92vh] min-h-[560px] w-full items-center overflow-hidden">
+        <HeroParallax src="/images/new-banner.png" alt="Republic fleet in orbit" />
+        <div className="absolute inset-0 bg-gradient-to-t from-canvas via-canvas/70 to-canvas/10" />
+
+        <div className="container relative z-10 mx-auto px-4 pt-16 sm:px-6">
+          <Reveal className="max-w-xl" y={16}>
+            <p className="mb-4 text-sm font-medium uppercase tracking-wide text-accent-bright">
+              Star Wars: Battlefront II Community
+            </p>
+            <h1 className="text-balance text-4xl font-semibold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
+              104th Battalion Milsim
             </h1>
-          </div>
+            <p className="mt-6 max-w-lg text-balance text-lg text-zinc-300">
+              A thriving community of 1,800+ passionate gamers united by a love for Star Wars: Battlefront 2. We
+              take the fight to the CIS daily — and destroy some Clankers.
+            </p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <Button size="lg" className="bg-accent text-white hover:bg-accent-bright" asChild>
+                <Link href={DISCORD_URL} target="_blank" rel="noopener noreferrer">
+                  <FaDiscord className="mr-2 h-4 w-4" />
+                  Join Today
+                </Link>
+              </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-white/20 bg-transparent text-white hover:bg-white/10 hover:text-white"
+                asChild
+              >
+                <a href="#why-join">Learn More</a>
+              </Button>
+            </div>
+          </Reveal>
         </div>
-      </div>
+      </section>
 
-      {/* Welcome Section */}
-      <div className="py-16 container mx-auto px-4">
-        <div className="text-center max-w-4xl mx-auto">
-          <p className="text-xl md:text-2xl text-blue-400 mb-4">Star Wars Military Simulation Community</p>
-          <p className="text-lg text-zinc-300 mb-8">
-            Join over 1800+ clone troopers across Xbox, PlayStation, and PC in authentic Star Wars battles. Experience
-            military simulation like never before with the 104th Battalion.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white" asChild>
-              <Link href="https://discord.gg/104th-battalion-milsim" target="_blank" rel="noopener noreferrer">
-                <FaDiscord className="text-white mr-2 h-4 w-4" />
-                Join Today
-              </Link>
-            </Button>
-          </div>
+      {/* Stats */}
+      <section className="border-b border-line bg-surface">
+        <div className="container mx-auto grid grid-cols-1 divide-y divide-line px-4 sm:grid-cols-3 sm:divide-x sm:divide-y-0 sm:px-6">
+          <Reveal delay={0}>
+            <StatsCounter icon={<Users className="h-5 w-5" />} value={1800} suffix="+" label="Members" description="Across all platforms" />
+          </Reveal>
+          <Reveal delay={0.1}>
+            <StatsCounter icon={<Trophy className="h-5 w-5" />} value={3} label="Platforms" description="Xbox, PlayStation, PC" />
+          </Reveal>
+          <Reveal delay={0.2}>
+            <StatsCounter icon={<Sword className="h-5 w-5" />} value={3} label="Branches" description="Army, Starfighter Corps, Special Forces" />
+          </Reveal>
         </div>
-      </div>
+      </section>
 
-      {/* Stats Section */}
-      <div className="bg-zinc-800 py-12">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <StatsCounter
-              icon={<Users className="h-8 w-8 text-blue-400" />}
-              value={2300}
-              label="Members"
-              description="Across all platforms"
-            />
-            <StatsCounter
-              icon={<GameController className="h-8 w-8 text-blue-400" />}
-              value={3}
-              label="Platforms"
-              description="Xbox, PlayStation, PC"
-            />
-            <StatsCounter
-              icon={<Trophy className="h-8 w-8 text-blue-400" />}
-              value={3}
-              label="Branches"
-              description="Army, Starfighter Corps, Special Forces"
-            />
-          </div>
-        </div>
-      </div>
+      {/* Why Join */}
+      <section id="why-join" className="py-24">
+        <div className="container mx-auto px-4 sm:px-6">
+          <Reveal className="mx-auto mb-14 max-w-2xl text-center">
+            <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">Why Join the 104th Battalion?</h2>
+          </Reveal>
 
-      {/* Why Join Us Section */}
-      <div className="bg-zinc-800/50 py-16">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-8 text-center">Why Join the 104th Battalion?</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 max-w-6xl mx-auto">
-            <div className="bg-zinc-800 rounded-lg p-6 border border-zinc-700 hover:border-blue-600 transition-colors text-center">
-              <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Users className="h-8 w-8 text-white" />
-              </div>
-              <h3 className="text-xl font-bold mb-3">Active Community</h3>
-              <p className="text-zinc-300">
-                Join over 1800+ active members across all platforms with daily events and operations.
-              </p>
-            </div>
-            <div className="bg-zinc-800 rounded-lg p-6 border border-zinc-700 hover:border-blue-600 transition-colors text-center">
-              <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Sword className="h-8 w-8 text-white" />
-              </div>
-              <h3 className="text-xl font-bold mb-3">Authentic Milsim</h3>
-              <p className="text-zinc-300">
-                Experience realistic Star Wars military simulation with proper ranks, tactics, and teamwork.
-              </p>
-            </div>
-            <div className="bg-zinc-800 rounded-lg p-6 border border-zinc-700 hover:border-blue-600 transition-colors text-center">
-              <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Trophy className="h-8 w-8 text-white" />
-              </div>
-              <h3 className="text-xl font-bold mb-3">All Skill Levels</h3>
-              <p className="text-zinc-300">
-                Whether you're new to milsim or a veteran, we have training and roles for everyone.
-              </p>
-            </div>
-            <div className="bg-zinc-800 rounded-lg p-6 border border-zinc-700 hover:border-blue-600 transition-colors text-center">
-              <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                <CalendarIcon className="h-8 w-8 text-white" />
-              </div>
-              <h3 className="text-xl font-bold mb-3">Events</h3>
-              <p className="text-zinc-300">
-                We have frequent small events and a few times a year large operations runing for longer.
-              </p>
-            </div>
+          <div className="mx-auto grid max-w-5xl grid-cols-1 gap-5 sm:grid-cols-2">
+            {WHY_JOIN.map(({ icon: Icon, title, description }, i) => (
+              <Reveal key={title} delay={i * 0.08}>
+                <div className="rounded-xl border border-line bg-surface p-7 transition-colors hover:border-accent/40">
+                  <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-full bg-accent/10 text-accent">
+                    <Icon className="h-5 w-5" />
+                  </div>
+                  <h3 className="mb-2 text-lg font-semibold">{title}</h3>
+                  <p className="text-sm leading-relaxed text-mute">{description}</p>
+                </div>
+              </Reveal>
+            ))}
           </div>
-          <div className="text-center mt-8">
-            <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white" asChild>
-              <Link href="https://discord.gg/104th-battalion-milsim" target="_blank" rel="noopener noreferrer">
-                <FaDiscord className="text-white mr-2 h-4 w-4" />
+
+          <Reveal className="mt-12 text-center">
+            <Button size="lg" className="bg-accent text-white hover:bg-accent-bright" asChild>
+              <Link href={DISCORD_URL} target="_blank" rel="noopener noreferrer">
+                <FaDiscord className="mr-2 h-4 w-4" />
                 Start Your Journey
               </Link>
             </Button>
-          </div>
+          </Reveal>
         </div>
-      </div>
+      </section>
 
-      {/* Getting Started Section */}
-      <div className="py-16 container mx-auto px-4">
-        <h2 className="text-3xl font-bold mb-8 text-center">Ready to Enlist?</h2>
-        <div className="max-w-4xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-zinc-800 rounded-lg p-8 border border-zinc-700 flex flex-col h-full">
-              <div className="flex-grow">
-                <h3 className="text-2xl font-bold mb-4 text-blue-400">New Recruits</h3>
-                <ul className="space-y-3 mb-6">
-                  <li className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-                    <span>Join our Discord server</span>
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-                    <span>Choose your platoon or wing</span>
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-                    <span>Complete basic training and get your name and designation</span>
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-                    <span>Start participating in raids and events</span>
-                  </li>
-                </ul>
-              </div>
-              <div className="mt-auto pt-4">
-                <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white" asChild>
-                  <Link href="https://discord.gg/104th-battalion-milsim" target="_blank" rel="noopener noreferrer">
-                    <FaDiscord className="text-white mr-2 h-4 w-4" />
+      {/* Welcome */}
+      <section className="border-t border-line bg-surface py-24">
+        <div className="container mx-auto px-4 sm:px-6">
+          <Reveal className="mx-auto max-w-2xl text-center">
+            <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">Welcome to the 104th!</h2>
+            <p className="mt-5 text-mute">
+              The 104th is a thriving community of over 1,800 passionate gamers united by a love for Star Wars:
+              Battlefront 2. Our dedicated staff and active Troopers work together daily to take the fight to the
+              CIS — and destroy some Clankers!
+            </p>
+          </Reveal>
+
+          <Reveal className="mx-auto mt-14 max-w-4xl">
+            <p className="mb-6 text-center text-sm font-medium uppercase tracking-wide text-accent-bright">
+              Join one of our divisions
+            </p>
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-3">
+              {DIVISIONS.map(({ image, name, description }) => (
+                <Link
+                  key={name}
+                  href="/branches/"
+                  className="flex flex-col items-center rounded-xl border border-line bg-canvas p-6 text-center transition-colors hover:border-accent/40"
+                >
+                  <div className="relative mb-4 h-11 w-11 shrink-0">
+                    <Image src={image} alt="" fill className="object-contain" />
+                  </div>
+                  <h3 className="mb-1 font-semibold">{name}</h3>
+                  <p className="text-sm text-mute">{description}</p>
+                </Link>
+              ))}
+            </div>
+          </Reveal>
+
+          <Reveal className="mx-auto mt-10 max-w-2xl text-center text-sm text-mute">
+            No matter your playstyle, there&apos;s a place for you in the 104th.
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Enlist */}
+      <section className="border-t border-line py-24">
+        <div className="container mx-auto px-4 sm:px-6">
+          <Reveal className="mx-auto mb-14 max-w-2xl text-center">
+            <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">Ready to Enlist?</h2>
+          </Reveal>
+
+          <div className="mx-auto grid max-w-4xl grid-cols-1 gap-6 md:grid-cols-2">
+            <Reveal>
+              <div className="flex h-full flex-col rounded-xl border border-line bg-canvas p-8">
+                <h3 className="mb-6 text-xl font-semibold text-accent-bright">New Recruits</h3>
+                <ol className="flex-grow space-y-5">
+                  {NEW_RECRUIT_STEPS.map((step, i) => (
+                    <li key={step} className="flex items-start gap-4">
+                      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-accent/10 text-xs font-medium text-accent">
+                        {i + 1}
+                      </span>
+                      <span className="text-sm text-ink/90">{step}</span>
+                    </li>
+                  ))}
+                </ol>
+                <Button className="mt-8 w-full bg-accent text-white hover:bg-accent-bright" asChild>
+                  <Link href={DISCORD_URL} target="_blank" rel="noopener noreferrer">
+                    <FaDiscord className="mr-2 h-4 w-4" />
                     Join Discord Now
                   </Link>
                 </Button>
               </div>
-            </div>
-            <div className="bg-zinc-800 rounded-lg p-8 border border-zinc-700 flex flex-col h-full">
-              <div className="flex-grow">
-                <h3 className="text-2xl font-bold mb-4 text-blue-400">What to Expect</h3>
-                <ul className="space-y-3 mb-6">
-                  <li className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-                    <span>Daily Raids</span>
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-                    <span>Large-scale operations</span>
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-                    <span>Rank progression system</span>
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-                    <span>Friendly community</span>
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-                    <span>Qualifications to earn</span>
-                  </li>
+            </Reveal>
+
+            <Reveal delay={0.1}>
+              <div className="flex h-full flex-col rounded-xl border border-line bg-canvas p-8">
+                <h3 className="mb-6 text-xl font-semibold text-accent-bright">What to Expect</h3>
+                <ul className="flex-grow space-y-5">
+                  {WHAT_TO_EXPECT.map((item) => (
+                    <li key={item} className="flex items-center gap-3">
+                      <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+                      <span className="text-sm text-ink/90">{item}</span>
+                    </li>
+                  ))}
                 </ul>
-              </div>
-              <div className="mt-auto pt-4">
                 <Button
                   variant="outline"
-                  className="w-full bg-zinc-900 border-blue-600 text-blue-400 hover:bg-blue-950/50"
+                  className="mt-8 w-full border-line bg-transparent text-ink hover:border-accent/50 hover:bg-transparent hover:text-accent-bright"
                   asChild
                 >
-                  <Link href="https://discord.gg/104th-battalion-milsim" target="_blank" rel="noopener noreferrer">
+                  <Link href={DISCORD_URL} target="_blank" rel="noopener noreferrer">
                     Learn More
                   </Link>
                 </Button>
               </div>
-            </div>
+            </Reveal>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* Footer */}
-      <footer className="bg-zinc-900 border-t border-zinc-800 py-8">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="flex items-center gap-4 mb-6 md:mb-0">
-              <Image
-                src="/images/logo.png"
-                alt="104th Battalion Logo"
-                width={50}
-                height={50}
-                className="rounded-full"
-              />
-              <span className="text-xl font-bold">104th Battalion Milsim</span>
-            </div>
-            <div className="flex gap-4">
-              <Link
-                href="https://discord.gg/104th-battalion-milsim"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-zinc-400 hover:text-blue-400 transition-colors"
-              >
-                <FaDiscord className="h-6 w-6" />
-                <span className="sr-only">Discord</span>
-              </Link>
-              <Link
-                href="https://www.instagram.com/104thbattalionmilsim"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-zinc-400 hover:text-blue-400 transition-colors"
-              >
-                <FaInstagram className="h-6 w-6" />
-                <span className="sr-only"></span>
-              </Link>
-            </div>
-          </div>
-          <div className="text-center mt-8 text-zinc-500 text-sm">
-            © 2025 104th Battalion Milsim. Star Wars is a trademark of Lucasfilm Ltd.
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   )
 }

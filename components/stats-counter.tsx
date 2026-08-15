@@ -7,14 +7,15 @@ interface StatsCounterProps {
   value: number
   label: string
   description: string
+  suffix?: string
 }
 
-export default function StatsCounter({ icon, value, label, description }: StatsCounterProps) {
+export default function StatsCounter({ icon, value, label, description, suffix = "" }: StatsCounterProps) {
   const [count, setCount] = useState(0)
 
   useEffect(() => {
-    const duration = 2000 // ms
-    const interval = 50 // ms
+    const duration = 1600 // ms
+    const interval = 40 // ms
     const steps = duration / interval
     const increment = value / steps
 
@@ -33,14 +34,16 @@ export default function StatsCounter({ icon, value, label, description }: StatsC
   }, [value])
 
   return (
-    <div className="bg-zinc-800/50 p-6 rounded-lg border border-zinc-700 text-center hover:border-blue-600 transition-colors">
-      <div className="flex justify-center mb-4">{icon}</div>
-      <div className="text-4xl font-bold mb-2 text-white">
+    <div className="flex flex-col items-center gap-3 py-8 text-center">
+      <div className="flex h-11 w-11 items-center justify-center rounded-full bg-accent/10 text-accent">{icon}</div>
+      <div className="text-3xl font-semibold tabular-nums text-ink sm:text-4xl">
         {count.toLocaleString()}
-        {value === 1800 ? "+" : ""}
+        {suffix}
       </div>
-      <div className="text-xl font-semibold mb-1 text-blue-400">{label}</div>
-      <div className="text-zinc-400 text-sm">{description}</div>
+      <div>
+        <div className="text-sm font-medium text-ink/90">{label}</div>
+        <div className="mt-0.5 text-sm text-mute">{description}</div>
+      </div>
     </div>
   )
 }
